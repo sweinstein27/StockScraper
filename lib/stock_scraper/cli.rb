@@ -23,6 +23,7 @@ Biggest losers:
 4.
 5.
     DOC
+    @stocks = StockScraper::Stock.all
 end
 
 def menu
