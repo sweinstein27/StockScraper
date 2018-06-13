@@ -1,5 +1,2 @@
-require "stock_scraper/version"
-
-module StockScraper
-  # Your code goes here...
-end
+require_relative './stock_scraper/version'
+require_relative './stock_scraper/cli'
