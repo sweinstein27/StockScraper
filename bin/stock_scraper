@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+puts "Welcome to Stock Scraper!"
+
+StockScraper::CLI.new.call
