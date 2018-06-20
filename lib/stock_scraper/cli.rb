@@ -8,8 +8,7 @@ class StockScraper::CLI
   end
 
 def list_stocks
-binding.pry
-stock_scraper::Stock.all
+StockScraper::Stock.all
   puts <<-DOC
 Biggest gainers:
 1.
@@ -25,6 +24,9 @@ Biggest losers:
 4.
 5.
     DOC
+
+    @stocks = StockScraper::Stock.all
+
 end
 
 def menu
