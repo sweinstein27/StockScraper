@@ -8,7 +8,13 @@ class StockScraper::CLI
   end
 
 def list_stocks
+
 StockScraper::Stock.all
+
+
+binding.pry
+stock_scraper::Stock.all
+
   puts <<-DOC
 Biggest gainers:
 1.
