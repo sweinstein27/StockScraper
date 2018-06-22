@@ -8,7 +8,7 @@ class StockScraper::Stock
   end
 
   def self.all
-    @@all ||= scrape_stock_movers_top
+    @@all ||= scrape_stock_movers
   end
 
 
@@ -22,17 +22,20 @@ class StockScraper::Stock
 # end
 
 
-def self.scrape_stock_movers_top
+def self.scrape_stock_movers
      doc = Nokogiri::HTML(open('https://money.cnn.com/data/us_markets/'))
      stocks = []
-     doc.css("td").each do |row|
+     doc.css("#wsod_whatsMoving").css("td.wsod_firstCol").each do |row|
        stock_symbol = row.css(".wsod_symbol").children.text
        stock_name = row.css("span").text
        url = row.css(".wsod_symbol").attribute("href").value
         stocks << {stock_symbol: stock_symbol, stock_name: stock_name, url: url  }
-     end
+      end
    end
 
+def self.scrape_individual_stock
+
+end
 
 
 end
