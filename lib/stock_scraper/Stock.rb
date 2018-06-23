@@ -39,6 +39,7 @@ def self.scrape_stock_movers
        stock_name = row.css("span").text
        url = row.css(".wsod_symbol").attribute("href").value
        self.new(stock_name, stock_symbol, url)
+      #  binding.pry
         # @@all << {stock_symbol: stock_symbol, stock_name: stock_name, url: url  }
         #initialize a hash, create new instance
       end

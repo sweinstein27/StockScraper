@@ -13,32 +13,29 @@ StockScraper::Stock.all
 
   puts <<-DOC
 Biggest gainers:
-1.
-2.
-3.
-4.
-5.
+1.  #{StockScraper::Stock.all[0].stock_name}
+2.  #{StockScraper::Stock.all[1].stock_name}
+3.  #{StockScraper::Stock.all[2].stock_name}
+4.  #{StockScraper::Stock.all[3].stock_name}
+5.  #{StockScraper::Stock.all[4].stock_name}
 
 Biggest losers:
-1.
-2.
-3.
-4.
-5.
+6.  #{StockScraper::Stock.all[5].stock_name}
+7.  #{StockScraper::Stock.all[6].stock_name}
+8.  #{StockScraper::Stock.all[7].stock_name}
+9.  #{StockScraper::Stock.all[8].stock_name}
+10. #{StockScraper::Stock.all[9].stock_name}
     DOC
-
-    @stocks = StockScraper::Stock.all
 
 end
 
 def menu
   input = nil
   while input != "exit"
-    puts "Please enter a valid stock symbol to learn more or press exit"
-    input = gets.strip.downcase
-    puts "Stock price: $74"
-    puts "Volume: 54m"
-    puts "P/E: 15"
+    puts "Please enter a number 1-10 to learn more or type exit"
+    input = gets.strip
+    puts "#{StockScraper::Stock.all[input.to_i-1].stock_name}"
+
   end
 end
 
