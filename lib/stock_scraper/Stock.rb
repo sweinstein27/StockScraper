@@ -2,13 +2,22 @@ class StockScraper::Stock
 
   attr_accessor :stock_name, :stock_price, :volume, :pe, :url, :stock_symbol
 
-  def initialize(name = nil, url = nil )
-    @name = name
+  @@all = []
+
+
+  def initialize(stock_name = nil, stock_symbol = nil,  url = nil )
+    @stock_name = stock_name
     @url = url
+    @stock_symbol = stock_symbol
+    @@all << self
   end
 
   def self.all
-    @@all ||= scrape_stock_movers
+  if @@all.empty?
+    scrape_stock_movers
+  else
+    @@all
+  end
   end
 
 
@@ -29,7 +38,9 @@ def self.scrape_stock_movers
        stock_symbol = row.css(".wsod_symbol").children.text
        stock_name = row.css("span").text
        url = row.css(".wsod_symbol").attribute("href").value
-        stocks << {stock_symbol: stock_symbol, stock_name: stock_name, url: url  }
+       self.new(stock_name, stock_symbol, url)
+        # @@all << {stock_symbol: stock_symbol, stock_name: stock_name, url: url  }
+        #initialize a hash, create new instance
       end
    end
 
