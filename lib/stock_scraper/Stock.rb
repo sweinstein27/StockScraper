@@ -21,16 +21,6 @@ class StockScraper::Stock
   end
 
 
-# def self.movers
-#   #returns all instances of stock from movers scraper
-#   stock_1 = self.new
-#   stock_1.name = "stockname1"
-#   stock_1.stock_price = "$45"
-#   stock_1.volume = "55m"
-#   stock_1.pe = "15"
-# end
-
-
 def self.scrape_stock_movers
      doc = Nokogiri::HTML(open('https://money.cnn.com/data/us_markets/'))
      stocks = []
@@ -42,12 +32,14 @@ def self.scrape_stock_movers
       end
    end
 
-def self.scrape_individual_stock(input)
+def self.scrape_individual_stock_news(input)
   doc =  Nokogiri::HTML(open("https://money.cnn.com"+@@all[input.to_i-1].url))
-    previous_close = doc.css("td.wsod_quoteDataPoint").first.text
-  binding.pry
+  doc.css(".wsod_newsTable").children.children.each do |article|
+  news = article.text
+  puts news
+  #instantiate news and put out each stocks news when called and format
+  end
 end
-
 
 
 end
