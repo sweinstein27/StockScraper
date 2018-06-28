@@ -34,7 +34,7 @@ def menu
     puts "Please enter a number 1-10 to learn more or type exit"
     input = gets.strip
     StockScraper::Stock.scrape_individual_stock_news(input)
-    puts "#{StockScraper::Stock.all[input.to_i-1].stock_name}"
+    # puts "#{StockScraper::Stock.all[input.to_i-1].stock_name}"
 
   end
 end

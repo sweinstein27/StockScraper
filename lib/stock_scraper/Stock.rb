@@ -1,11 +1,11 @@
 class StockScraper::Stock
 
-  attr_accessor :stock_name, :stock_price, :volume, :pe, :url, :stock_symbol
+  attr_accessor :stock_name, :url, :stock_symbol
 
   @@all = []
 
 
-  def initialize(stock_name = nil, stock_symbol = nil,  url = nil )
+  def initialize(stock_name = nil, stock_symbol = nil,  url = nil)
     @stock_name = stock_name
     @url = url
     @stock_symbol = stock_symbol
@@ -33,12 +33,26 @@ def self.scrape_stock_movers
    end
 
 def self.scrape_individual_stock_news(input)
+  @news = []
   doc =  Nokogiri::HTML(open("https://money.cnn.com"+@@all[input.to_i-1].url))
   doc.css(".wsod_newsTable").children.children.each do |article|
-  news = article.text
-  puts news
-  #instantiate news and put out each stocks news when called and format
+    if article.children.first
+      news = article.children.first.text
+      @news << news
+    end
   end
+  puts <<-DOC
+
+  1. #{@news[0]}
+
+  2. #{@news[1]}
+
+  3. #{@news[2]}
+
+  4. #{@news[3]}
+
+  5. #{@news[4]}
+  DOC
 end
 
 
