@@ -33,9 +33,9 @@ def menu
   while input != "exit"
     puts "Please enter a number 1-10 to learn more or type exit"
     input = gets.strip
-    StockScraper::Stock.scrape_individual_stock_news(input)
-    # puts "#{StockScraper::Stock.all[input.to_i-1].stock_name}"
-
+    if input.to_i.between?(1,10)
+      StockScraper::Stock.scrape_individual_stock_news(input)
+    end
   end
 end
 

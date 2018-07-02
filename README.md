@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Build a CLI Application with External Data
 
 ## Overview
@@ -146,4 +146,3 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/'sweinstein27'/stock_scraper.
 # ScottWeinstein-CLI-app
->>>>>>> cb66b03a44fe7f92d01bcedeb72d459e166e2894
