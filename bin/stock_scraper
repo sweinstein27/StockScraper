@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 
-require './lib/stock_scraper'
+require_relative '../lib/stock_scraper'
 
 puts "Welcome to Stock Scraper!"
 
-StockScraper::CLI.new.call
+session = StockScraper::CLI.new
+session.call
