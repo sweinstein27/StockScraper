@@ -23,7 +23,7 @@ class StockScraper::Stock
 
 def self.scrape_stock_movers
      doc = Nokogiri::HTML(open('https://money.cnn.com/data/us_markets/'))
-     stocks = []
+    #  stocks = []
      doc.css("#wsod_whatsMoving").css("td.wsod_firstCol").each do |row|
        stock_symbol = row.css(".wsod_symbol").children.text
        stock_name = row.css("span").text
@@ -49,9 +49,6 @@ def self.scrape_individual_stock_news(input)
 
   3. #{@news[2]}
 
-  4. #{@news[3]}
-
-  5. #{@news[4]}
   DOC
 end
 
