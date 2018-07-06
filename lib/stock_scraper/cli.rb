@@ -28,16 +28,16 @@ def menu
     if input.to_i.between?(1,10)
       which_stock = StockScraper::Stock.all[input.to_i-1]
       which_stock.save_news
-      display_news
+      which_stock.news.each_with_index do |article, i|
+        if !article.nil?
+          puts "#{i+1}. #{article}
+          "
+        end
+      end
     end
   end
 end
 
-def display_news(stock)
-  stock.news.each |article| do
-    puts article
-  end
-end
 
 def bye
   puts "See you later!"
