@@ -15,23 +15,13 @@ class StockScraper::Scraper
         end
      end
 
-  def self.scrape_individual_stock_news(input)
-    which_stock = StockScraper::Stock.all[input.to_i-1]
+  def self.scrape_individual_stock_news(which_stock)
     doc =  Nokogiri::HTML(open("https://money.cnn.com"+which_stock.url))
-    doc.css(".wsod_newsTable").children.children.each do |article|
+    doc.css(".wsod_newsTable").children.children.map do |article|
       if article.children.first
         news = article.children.first.text
       end
     end
-    puts <<-DOC
-
-    1. #{@news[0]}
-
-    2. #{@news[1]}
-
-    3. #{@news[2]}
-
-    DOC
   end
 
 end

@@ -26,8 +26,16 @@ def menu
     puts "Please enter a number 1-10 to learn more or type exit"
     input = gets.strip
     if input.to_i.between?(1,10)
-      StockScraper::Stock.save_news(input)
+      which_stock = StockScraper::Stock.all[input.to_i-1]
+      which_stock.save_news
+      display_news
     end
+  end
+end
+
+def display_news(stock)
+  stock.news.each |article| do
+    puts article
   end
 end
 
