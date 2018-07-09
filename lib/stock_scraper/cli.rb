@@ -36,6 +36,15 @@ def menu
       end
     end
   end
+      puts "Which article would you like to read?"
+        input = gets.strip.to_i
+        if input < which_stock.news.length+1
+          puts which_stock.news.article_text
+        elsif input == "exit"
+          bye
+        else
+          puts "Please try again"
+        end
 end
 
 

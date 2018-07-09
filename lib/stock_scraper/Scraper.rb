@@ -24,4 +24,6 @@ class StockScraper::Scraper
     end
   end
 
+  def self.scrape_individual_stock_article_text(which_article)
+
 end

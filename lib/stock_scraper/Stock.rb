@@ -1,6 +1,6 @@
 class StockScraper::Stock
 
-  attr_accessor :stock_name, :url, :stock_symbol, :news
+  attr_accessor :stock_name, :url, :stock_symbol, :news, :news_url
 
   @@all = []
 
@@ -11,6 +11,7 @@ class StockScraper::Stock
     @stock_symbol = stock_symbol
     @@all << self
     @news = news
+
   end
 
   def self.all
