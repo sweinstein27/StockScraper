@@ -25,5 +25,7 @@ class StockScraper::Scraper
   end
 
   def self.scrape_individual_stock_article_text(which_article)
+    doc = Nokogiri::HTML(open("https://money.cnn.com"+which_article.news_url))
+  end
 
-end
+  end
