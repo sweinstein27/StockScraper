@@ -11,7 +11,7 @@ class StockScraper::Stock
     @stock_symbol = stock_symbol
     @@all << self
     @news = news
-
+    @news_url = news_url
   end
 
   def self.all

@@ -18,14 +18,22 @@ class StockScraper::Scraper
   def self.scrape_individual_stock_news(which_stock)
     doc =  Nokogiri::HTML(open("https://money.cnn.com"+which_stock.url))
     doc.css(".wsod_newsTable").children.children.map do |article|
-        if article.children.first
-          news = article.children.first.text
+      if article.children.first
+        news_url = article.children.first.values.first
+        headline = article.children.first.text
+        news_doc = Nokogiri::HTML(open(news_url))
+
+        binding.pry
+        news_text =
+        news_hash = {
+          :news_url => news_url,
+          :headline => headline,
+          :news_text => news_text,
+          }
       end
     end
   end
 
-  def self.scrape_individual_stock_article_text(which_article)
-    doc = Nokogiri::HTML(open("https://money.cnn.com"+which_article.news_url))
-  end
 
-  end
+
+end
