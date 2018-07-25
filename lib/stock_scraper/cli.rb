@@ -30,17 +30,20 @@ def main_menu
         which_stock = StockScraper::Stock.all[input.to_i-1]
         which_stock.save_news
         which_stock.news.each_with_index do |news, i|
-        puts "#{i+1}. #{news[:headline]}"
+          if !news[:headline].nil?
+            binding.pry
+          puts "#{i+1}. #{news[:headline]}"
+        end
+      end
     end
   end
-end
 puts "Which article would you like to read?"
 input = gets.strip
   if input == "exit"
     bye
   elsif input.to_i < which_stock.news.length+1
-    
-    
+    puts "article_url"
+
   else
     puts "Please try again"
   end
