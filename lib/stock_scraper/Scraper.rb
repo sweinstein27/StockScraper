@@ -20,8 +20,8 @@ class StockScraper::Scraper
     doc.css(".wsod_newsTable").children.children.map do |article|
       if article.text.strip != " "
         if article.children.first
-          news_url = article.children.first.values.first
           headline = article.children.first.text
+          news_url = article.children.first.values.first
           news_hash = {
             :news_url => news_url,
             :headline => headline,
