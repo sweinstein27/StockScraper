@@ -21,7 +21,7 @@ def choose_stock
   end
   else
     puts "Try Again"
-    hoose_stock
+    choose_stock
   end
 end
 
