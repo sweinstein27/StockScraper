@@ -1,26 +1,27 @@
 class StockScraper::CLI
 
   def call
-    list_stocks
     choose_stock
     choose_article
   end
 
 
 def choose_stock
+  list_stocks
   puts "Please enter a number 1-10 to learn more or type exit"
   input = gets.strip
-  if input == "exit"
+  if input.to_s == "exit"
     bye
+  elsif input.to_s == "back"
+    call
   elsif input.to_i.between?(1,10)
     @which_stock = StockScraper::Stock.all[input.to_i-1]
     @which_stock.save_news
     @which_stock.news.each_with_index do |news, i|
       puts "#{i+1}. #{news[:headline]}" unless news == nil
     end
-  end
   else
-    puts "Try Again"
+    puts "Please try again"
     choose_stock
   end
 end
@@ -31,15 +32,26 @@ puts "Which article would you like to read?"
 input = gets.strip
   if input == "exit"
     bye
-  elsif input.to_i < @which_stock.news.length+1
+  elsif input == "back"
+    choose_stock
+  elsif input.to_i <= @which_stock.news.length
     puts @which_stock.news[input.to_i-1][:news_url]
   else
     puts "Please try again"
+    choose_article
   end
+  puts "Would you like to read another article?"
+  input = gets.strip
+    if input == "y" || input == "yes"
+      choose_article
+    else
+      exit(0)
+    end
 end
 
 def bye
-  return "See you later!"
+  puts "see you later!"
+  exit(0)
 end
 
 def list_stocks
