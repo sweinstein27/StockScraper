@@ -28,8 +28,7 @@ class StockScraper::Scraper
           }
         end
       end
-    end
-    array.compact
+    end.compact
   end
 
 
