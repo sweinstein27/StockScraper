@@ -15,13 +15,13 @@ class StockScraper::Stock
 
   def self.all
     if @@all.empty?
-      StockScraper::Stock.save_stock
+      StockScraper::Stock.save_stocks
     else
       @@all
     end
   end
 
-  def self.save_stock
+  def self.save_stocks
     StockScraper::Scraper.scrape_stock_movers.each do |stock|
       self.new(stock[:stock_name], stock[:stock_symbol], stock[:url])
     end
