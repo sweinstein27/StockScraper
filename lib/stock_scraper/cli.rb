@@ -3,6 +3,7 @@ class StockScraper::CLI
   def call
     choose_stock
     choose_article
+    read_another
   end
 
 
@@ -40,14 +41,21 @@ input = gets.strip
     puts "Please try again"
     choose_article
   end
+  read_another
+end
+
+def read_another
   puts "Would you like to read another article?"
   input = gets.strip
-    if input == "y" || input == "yes"
-      choose_article
-    else
-      exit(0)
-    end
+  if input == "y" || input == "yes"
+    choose_article
+  elsif input == "back"
+    choose_stock
+  else
+    exit(0)
+  end
 end
+
 
 def bye
   puts "see you later!"
