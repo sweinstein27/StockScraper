@@ -29,7 +29,7 @@ class StockScraper::Stock
 
   def save_news
     @news = StockScraper::Scraper.scrape_individual_stock_news(self)
-    news.compact
+    compacted_news = news.compact
   end
 
 
