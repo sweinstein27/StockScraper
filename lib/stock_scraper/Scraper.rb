@@ -17,7 +17,7 @@ class StockScraper::Scraper
 
   def self.scrape_individual_stock_news(which_stock)
     doc =  Nokogiri::HTML(open("https://money.cnn.com"+which_stock.url))
-    array = doc.css(".wsod_newsTable").children.children.map do |article|
+    doc.css(".wsod_newsTable").children.children.map do |article|
       if article.text.strip != " "
         if article.children.first
           headline = article.children.first.text
