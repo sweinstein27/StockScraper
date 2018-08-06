@@ -14,22 +14,22 @@ class StockScraper::Stock
   end
 
   def self.all
-  if @@all.empty?
-    StockScraper::Stock.save_stock
-  else
-    @@all
-  end
+    if @@all.empty?
+      StockScraper::Stock.save_stock
+    else
+      @@all
+    end
   end
 
   def self.save_stock
-      StockScraper::Scraper.scrape_stock_movers.each do |stock|
+    StockScraper::Scraper.scrape_stock_movers.each do |stock|
       self.new(stock[:stock_name], stock[:stock_symbol], stock[:url])
     end
   end
 
   def save_news
     @news = StockScraper::Scraper.scrape_individual_stock_news(self)
-    compacted_news = news.compact
+    @compacted_news = news.compact
   end
 
 
